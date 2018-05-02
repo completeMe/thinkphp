@@ -1,0 +1,65 @@
+一.  目录结构
+
+application .   应用目录
+        I------- index   模块目录
+        I-------common 公共函数文件
+
+extend .  拓展类库目录
+public      对外部署目录
+vendor    第三方类库目录
+
+
+二. weberver   TP5神器
+nohup   php     -S    localhost:8181    router.php    &
+     |                                                                                     |
+  不挂断的运行命令                                                       放入后台执行
+
+查看进程 .    ps    aux  | grep  (端口号)
+
+config 文件中    default_return_type =     可以修改允许返回的类型
+
+创建控制器
+php think make: controller   index/Test
+
+三. 虚拟域名配置
+(1) 手动方式配置
+配置hosts文件 -----分配域名
+配置http.conf 文件  把分配到httpd-vhosts.conf 文件的一行注释
+配置http-vhosts.conf文件 :   ServerAdmin : 写配置的虚拟域名         DocumentRoot :项目访问的入口文件 .   ServerName :域名
+重启apache服务器
+
+四. TP5自动化模块搭建
+
+利用build.php 文件自动化生成需要的模块
+php think build.php
+
+五. 前端模块搭建
+头部引用 .  
+{include file = "public|head"}
+
+六.后台模块页面搭建
+{:url(index/welcome)}
+   |
+  admin模块下 index控制器 welcome方法
+
+
+七.validate在实际项目中运用
+
+新建validate目录 创建当前类并继承validate类
+存储当前时间可不用time(), 直接声明一个$autoWriteTimestamp = true; 或者在config。php中更改知否自动写入时间配置
+
+分配数据到模版
+
+$this->fetch('' '',[]);       第二个参数🌟
+
+
+
+
+
+
+
+
+
+
+
+
