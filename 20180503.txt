@@ -1,0 +1,48 @@
+九, 根据地址获取经纬度类的封装
+
+百度地图类封装,  建在extend目录下
+
+class Map{
+       public static function  getMap($address){
+           1.    接口地址---------------------
+            2.拼接参数 .    $data = .  array(); 
+            3.http_build_query($data); 转化
+            4.在application下建一个extra目录 可以写配置参数  使用config(文件名.参数名) 调用
+      }
+
+
+}
+
+php获取内容有两种方式
+
+1/ file_get_contents()
+
+2/ curl请求
+
+封装一个curl请求
+
+function doCurl($url,$type=0,$data= []){
+     $ch = curl_init();        //初始化
+     //设置选项 
+    curl_setopt($ch,CURLOPT_URL,$url); 
+   curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);    //请求只返回结果 不输出内容
+    curl_setopt($ch,CURLOPT_HEADER,0);   //如果需要把头部输出出来 就需要一个非0的内容 不需要的话就用0
+
+    if($type = 1){
+       //post
+      curl_setopt($ch,CURLOPT_POST,1);     //post请求
+      curl_setopt($ch,CURLOPT_POSTFILEDS,$data)
+   }
+
+   //执行并获取内容
+    $output = curl_exec($ch);
+   //释放句柄
+   curl_close($ch);
+   return $output;
+
+
+}
+
+十. 根据经纬度或者地址调取百度地图
+同样道理,  在img标签内  src 指向封装类方法
+
