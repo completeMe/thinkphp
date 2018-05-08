@@ -1,0 +1,44 @@
+十一. 打造tp5自己的发送邮件服务
+
+1/ 注册网易邮箱或其他邮箱
+2/开启smtp服务 获取客户端密码
+3/php test.php   测试是否发送成功
+
+
+十二, 图片上传处理
+
+1/ 部署前端插件  http://www.uploadify.com/demos/
+
+2.编写image.js
+
+3/编写图片上传api接口实现图片完美异步上传
+
+解压压缩包,  
+unzip 压缩包 -d  目录
+
+public function upload(){
+     $file = Request::instance()->file('file');
+     //给定一个目录
+      $info = $file->move('upload');
+       if($info && $info->getPathname()){
+             (success)
+       }
+     (error)
+} 
+
+十三, 利用 tp-5 session 处理商户后台登陆模块
+1/  登陆之后用session保存登陆信息
+    session('变量名','用户名','作用域');
+2/获取session
+    session('变量名','','作用域');
+3/清空session
+     session(null,'作用域');
+
+ 十四. 数据入库 防xss攻击
+
+ 通过站点服务器返回脚本 然后在客户端触发执行 从而发起的一种web攻击方式
+
+解决方法 : 把字符串转化为html实体    函数,  htmlentities();
+tp解决方法  获取data时 input('post','','htmlentities') ; 传递第三个参数  
+                      或者在config.php 配置文件中  在默认全局过滤方法  default_fileter = 'htmlentities';
+ 
