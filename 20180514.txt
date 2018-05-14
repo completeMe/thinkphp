@@ -1,0 +1,23 @@
+二十一,日志问题定位
+
+可以通过业务写一个存入日志方法
+
+调用Log类
+Log::write('','log');  或者使用 trace(); 方法
+
+/*****/ log日志都是各种混杂的 可以把sql,error ,log各种业务不同的模式抽离出来 需要在config.php中配置
+'log' => [
+    'appart_level' => ['sql', 'error',  'log']
+]
+
+查看本地日志流 :  tail    -f   文件名
+
+ 查看文件有多少行  :  cat  文件名 |   wc  -l
+
+二十二. 系统调试神器
+
+变量调试: print_r(变量名); exit;
+sql 调试 : echo $this->getLastSql(); exit;
+ajax调试
+性能调试:   debug('begin');       中间代码      debug('end');          echo debug('start','end'); exit;
+config.php : app_trace 改为true 开启tp调试模式
